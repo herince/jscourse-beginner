@@ -9,7 +9,8 @@
 
   <script type="text/javascript">
     function typeOf (variable) {
-      var type = ({}).toString.call(variable).match(/\s([a-zA-Z]+)/)[1].toLowerCase();
+      var classOf = ({}).toString.call(variable),
+          type    = classOf.slice(8, classOf.length - 1).toLowerCase();
   
       if (type == 'number' && isNaN(variable)) {
         return 'NaN';
