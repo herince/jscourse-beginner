@@ -7,7 +7,16 @@
 </head>
 <body>
 
-  <script type="text/javascript" src="js/mah_tru.js"></script>
+  <script type="text/javascript">
+    function typeOf (variable) {
+      var type = ({}).toString.call(variable).match(/\s([a-zA-Z]+)/)[1].toLowerCase();
+  
+      if (type == 'number' && isNaN(variable)) {
+        return 'NaN';
+      }
 
+      return type;
+    }
+  </script>
 </body>
 </html>
