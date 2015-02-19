@@ -12,7 +12,7 @@
       var classOf = ({}).toString.call(variable),
           type    = classOf.slice(8, classOf.length - 1).toLowerCase();
   
-      if (type == 'number' && isNaN(variable)) {
+      if (Number.isNaN(variable)) {
         return 'NaN';
       }
 
