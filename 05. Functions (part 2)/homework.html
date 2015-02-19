@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Storage (advanced)</title>
+</head>
+<body>
+
+  <script type="text/javascript">
+  function Storage () {
+    var items = [];
+
+    this.get = function (name) {
+      return items[name];
+    };
+    this.set = function (name, value) {
+      items[name] = value;
+    };
+
+    this.getMultiple = function (names) {
+      items_to_return = [];
+
+      for (name in names) {
+        items_to_return.push(items[names[name]]);
+      };
+
+      return items_to_return;
+    };
+    this.setMultiple = function (pairs) {
+      for (pair in pairs) {
+        items[pair] = pairs[pair];
+      }
+    };
+  }
+  </script>
+</body>
+</html>
