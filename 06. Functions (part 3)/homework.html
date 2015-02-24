@@ -7,17 +7,18 @@
 <body>
   <script type="text/javascript">
   if ( !Function.prototype.bind ) {
-    if (typeof this !== 'function') {
-      throw new TypeError('You can not bind non-functions to objects!');
-    }
-
     Function.prototype.bind = function (obj) {
-      var that = this;
-
+      if (typeof this !== 'function') {
+        throw new TypeError('You can not bind non-functions to objects!');
+      }
+    
+      var name = this.name,
+          that = this;
+    
       (function(obj) {
-        obj.constructor.prototype.name = function() {
-          that.call(obj);
-        }
+        obj.constructor.prototype[name] = function() {
+            that.call(obj);
+          };
       }).call(obj);
     }
   }
