@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Bind implementation</title>
+</head>
+<body>
+  <script type="text/javascript">
+  if ( !Function.prototype.bind ) {
+    if (typeof this !== 'function') {
+      throw new TypeError('You can not bind non-functions to objects!');
+    }
+
+    Function.prototype.bind = function (obj) {
+      var that = this;
+
+      (function(obj) {
+        obj.constructor.prototype.name = function() {
+          that.call(obj);
+        }
+      }).call(obj);
+    }
+  }
+  </script>
+</body>
+</html>
