@@ -12,14 +12,12 @@
         throw new TypeError('You can not bind non-functions to objects!');
       }
     
-      var name = this.name,
-          that = this;
-    
-      (function(obj) {
-        obj.constructor.prototype[name] = function() {
-            that.call(obj);
-          };
-      }).call(obj);
+      var that = this,
+          args = [].slice.call(arguments, 1);
+
+      return function () {
+        return that.apply(obj, args);
+      }
     }
   }
   </script>
