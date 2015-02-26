@@ -45,7 +45,7 @@
             if (element.constructor === Object) {
               html += '<ul>' + printObject(element) + '</ul>';
             } else {
-              foo += '<li>' + element + '</li>';
+              html += '<li>' + element + '</li>';
             }
           });
         } else if (list[key].constructor === Object) {
