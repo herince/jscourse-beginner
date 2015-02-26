@@ -37,21 +37,24 @@
   function printList(list) {
     var html = '';
 
+    function addSubObject(element, string) {
+      if (element.constructor === Object) {
+        string += '<ul>' + printObject(element) + '</ul>';
+      } else {
+        string += '<li>' + element + '</li>';
+      }
+      return string;
+    }
+
     function printObject (list) {
       html = '';
       for (key in list) {
         if (list[key].constructor === Array) {
           list[key].forEach(function(element) {
-            if (element.constructor === Object) {
-              html += '<ul>' + printObject(element) + '</ul>';
-            } else {
-              html += '<li>' + element + '</li>';
-            }
+            html = addSubObject(element, html);
           });
-        } else if (list[key].constructor === Object) {
-          html += '<ul>' + printObject(list[key]) + '</ul>';
         } else {
-          html += '<li>' + list[key] + '</li>';
+          html = addSubObject(list[key], html);
         }
       }
       return html;
@@ -64,3 +67,15 @@
   </script>
 </body>
 </html>
+
+<!-- if (element.constructor === Object) {
+              html += '<ul>' + printObject(element) + '</ul>';
+            } else {
+              html += '<li>' + element + '</li>';
+            }
+
+if (list[key].constructor === Object) {
+          html += '<ul>' + printObject(list[key]) + '</ul>';
+        } else {
+          html += '<li>' + list[key] + '</li>';
+        } -->
