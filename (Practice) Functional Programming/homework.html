@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title> Homework </title>
+
+</head>
+<body>
+
+  <script type="text/javascript">
+  var list = [
+  { label : 'Item 1' },
+  {
+    label : 'Item 2',
+    list : {
+      '1' : { label : 'Sub Item 2.1' },
+      '2' : { label : 'Sub Item 2.2' },
+      '3' : { label : 'Sub Item 2.3' }
+    }
+  },
+  {
+    label : 'Item 3',
+    list : [
+    {
+      label : 'Sub Item 3.1',
+      list : {
+        '1' : { label : 'Sub Item 3.1.1' },
+        '2' : { label : 'Sub Item 3.1.2' }
+      }
+    },
+    { label : 'Sub Item 3.2' },
+    { label : 'Sub Item 3.3' }
+    ]
+  }
+  ];
+
+  function printList(list) {
+    var html = '';
+
+    function printObject (list) {
+      html = '';
+      for (key in list) {
+        if (list[key].constructor === Array) {
+          list[key].forEach(function(element) {
+            if (element.constructor === Object) {
+              html += '<ul>' + printObject(element) + '</ul>';
+            } else {
+              foo += '<li>' + element + '</li>';
+            }
+          });
+        } else if (list[key].constructor === Object) {
+          html += '<ul>' + printObject(list[key]) + '</ul>';
+        } else {
+          html += '<li>' + list[key] + '</li>';
+        }
+      }
+      return html;
+    }
+
+    return printObject(list);
+  }
+
+  document.write(printList(list));
+  </script>
+</body>
+</html>
