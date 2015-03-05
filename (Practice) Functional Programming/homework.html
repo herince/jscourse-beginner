@@ -38,12 +38,14 @@
     var html = '';
 
     function addSubObject(element, string) {
+      var tmp = [];
+      tmp[0] = string;
       if (element.constructor === Object) {
-        string += '<ul>' + printObject(element) + '</ul>';
+        tmp.push( ['<ul>', printObject(element), '</ul>'].join('') );
       } else {
-        string += '<li>' + element + '</li>';
+        tmp.push( ['<li>', element, '</li>'].join('') );
       }
-      return string;
+      return tmp.join('');
     }
 
     function printObject (list) {
@@ -59,7 +61,6 @@
       }
       return html;
     }
-
     return printObject(list);
   }
 
