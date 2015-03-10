@@ -6,8 +6,6 @@
  */
 
 var TrafficLight = function () {
-  this.lights = {};
-
   this.lights = {
     red: new Light('red'),
     green: new Light('green')
@@ -61,7 +59,6 @@ CarsTrafficLight.prototype.stop = function () {
   var self = this;
 
   self.lights.green.turnOff();
-
   self.lights.yellow.turnOn();
 
   setTimeout(function () {
