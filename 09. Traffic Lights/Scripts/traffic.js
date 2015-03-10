@@ -28,6 +28,8 @@ var TrafficLight = function (type) {
 }
 
 TrafficLight.prototype = {
+  constructor: TrafficLight,
+  
   /* stops traffic by turning on only the red light */
   stop: function () {
     if (this.type == 'cars') {
