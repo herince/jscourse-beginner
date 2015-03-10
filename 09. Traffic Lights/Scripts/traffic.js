@@ -1,5 +1,6 @@
 /* 
  * @class  TrafficLight
+ * @class  CarsTrafficLight
  * 
  * @requires  Class
  */
