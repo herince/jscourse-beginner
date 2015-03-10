@@ -42,6 +42,7 @@ CarsTrafficLight.prototype.pass = function () {
   clearTimeout(this.timer);
 
   this.lights.yellow.turnOn();
+  
   this.timer = setTimeout(function () {
     this.lights.yellow.turnOff();
     this.lights.red.turnOff();
