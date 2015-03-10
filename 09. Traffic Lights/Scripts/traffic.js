@@ -1,4 +1,4 @@
-/** 
+/* 
  * @class  TrafficLight
  * 
  * @requires  Class
@@ -29,24 +29,45 @@ var TrafficLight = function (type) {
 
 TrafficLight.prototype = {
   constructor: TrafficLight,
-  
+
   /* stops traffic by turning on only the red light */
   stop: function () {
-    if (this.type == 'cars') {
-      this.lights.yellow.turnOff();
+    var self = this;
+
+    self.lights.green.turnOff();
+
+    if (self.type == 'cars') {
+      self.lights.yellow.turnOn();
+
+      setTimeout(function () {
+        self.lights.yellow.turnOff();
+      }, 2000);
     }
 
-    this.lights.green.turnOff();
-    this.lights.red.turnOn();
+    setTimeout(function () {
+      self.lights.red.turnOn();
+    }, 2000);
   },
 
   /* allows cars/humans to pass by turning only the green light on */
   pass: function () {
-    if (this.type == 'cars') {
-      this.lights.yellow.turnOff();
-    }
+    var self = this;
 
-    this.lights.red.turnOff();
-    this.lights.green.turnOn();
+    if (self.type == 'cars') {
+      self.lights.yellow.turnOn();
+      
+      setTimeout(function () {
+        self.lights.yellow.turnOff();
+      }, 2000);
+    }
+    
+    setTimeout(function(){
+      self.lights.red.turnOff();
+      self.lights.green.turnOn();
+    }, 2000);
   }
 }
+
+/*var CarsTrafficLight = function () {}
+
+CarsTrafficLight.prototype = new TrafficLight('cars');*/
