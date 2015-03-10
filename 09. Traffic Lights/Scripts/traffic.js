@@ -31,24 +31,20 @@ TrafficLight.prototype = {
   /* stops traffic by turning on only the red light */
   stop: function () {
     if (this.type == 'cars') {
-      this.colors.green.turnOff();
       this.colors.yellow.turnOff();
-    } else {
-      this.colors.green.turnOff();
     }
 
+    this.colors.green.turnOff();
     this.colors.red.turnOn();
   },
 
   /* allows cars/humans to pass by turning only the green light on */
   pass: function () {
     if (this.type == 'cars') {
-      this.colors.red.turnOff();
       this.colors.yellow.turnOff();
-    } else if (this.type == 'humans') {
-      this.colors.red.turnOff();
     }
 
+    this.colors.red.turnOff();
     this.colors.green.turnOn();
   }
 }
