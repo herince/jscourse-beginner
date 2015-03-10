@@ -13,18 +13,12 @@ var TrafficLight = function (type) {
   this.type = type;
   this.lights = {};
 
-  if (type == 'cars') {
-    this.lights = {
-      red: new Light('red'),
-      yellow: new Light('yellow'),
-      green: new Light('green')
-    };
-  } else {
-    this.lights = {
-      red: new Light('red'),
-      green: new Light('green')
-    };
-  }
+  this.lights = {
+    red: new Light('red'),
+    green: new Light('green')
+  };
+
+  this.lightsIntervals = {};
 }
 
 TrafficLight.prototype = {
@@ -32,42 +26,56 @@ TrafficLight.prototype = {
 
   /* stops traffic by turning on only the red light */
   stop: function () {
-    var self = this;
-
-    self.lights.green.turnOff();
-
-    if (self.type == 'cars') {
-      self.lights.yellow.turnOn();
-
-      setTimeout(function () {
-        self.lights.yellow.turnOff();
-      }, 2000);
-    }
-
-    setTimeout(function () {
-      self.lights.red.turnOn();
-    }, 2000);
+    this.lights.green.turnOff();
+    this.lights.red.turnOn();
   },
 
-  /* allows cars/humans to pass by turning only the green light on */
+  /* allows traffic by turning only the green light on */
   pass: function () {
-    var self = this;
-
-    if (self.type == 'cars') {
-      self.lights.yellow.turnOn();
-      
-      setTimeout(function () {
-        self.lights.yellow.turnOff();
-      }, 2000);
-    }
-    
-    setTimeout(function(){
-      self.lights.red.turnOff();
-      self.lights.green.turnOn();
-    }, 2000);
+    this.lights.red.turnOff();
+    this.lights.green.turnOn();
   }
 }
 
-/*var CarsTrafficLight = function () {}
+var CarsTrafficLight = function () {
+  this.lights.yellow = new Light('yellow');
+}
 
-CarsTrafficLight.prototype = new TrafficLight('cars');*/
+CarsTrafficLight.prototype = new TrafficLight();
+
+CarsTrafficLight.prototype.constructor = CarsTrafficLight;
+
+/* stops traffic by turning on only the red light,
+   adds a yellow light */
+CarsTrafficLight.prototype.pass = function () {
+  var self = this;
+
+  self.lights.yellow.turnOn();
+   
+  this.lightsIntervals.yellow = setTimeout(function () {
+    self.lights.yellow.turnOff();
+  }, 2000);
+
+  this.lightsIntervals.green = setTimeout(function(){
+    self.lights.red.turnOff();
+    self.lights.green.turnOn();
+  }, 2000);
+};
+
+/* allows cars to pass by turning only the green light on,
+   adds a yellow light */
+CarsTrafficLight.prototype.stop = function () {
+  var self = this;
+
+  self.lights.green.turnOff();
+
+  self.lights.yellow.turnOn();
+
+  setTimeout(function () {
+    self.lights.yellow.turnOff();
+  }, 2000);
+
+  setTimeout(function () {
+    self.lights.red.turnOn();
+  }, 2000);
+};
