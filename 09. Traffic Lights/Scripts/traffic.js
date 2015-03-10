@@ -17,8 +17,6 @@ var TrafficLight = function (type) {
     red: new Light('red'),
     green: new Light('green')
   };
-
-  this.lightsIntervals = {};
 }
 
 TrafficLight.prototype = {
@@ -39,6 +37,8 @@ TrafficLight.prototype = {
 
 var CarsTrafficLight = function () {
   this.lights.yellow = new Light('yellow');
+
+  this.lightsIntervals = {};
 }
 
 CarsTrafficLight.prototype = new TrafficLight();
