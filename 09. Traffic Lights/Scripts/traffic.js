@@ -42,12 +42,9 @@ CarsTrafficLight.prototype.pass = function () {
   var self = this;
 
   self.lights.yellow.turnOn();
-   
-  setTimeout(function () {
-    self.lights.yellow.turnOff();
-  }, 2000);
 
   setTimeout(function(){
+    self.lights.yellow.turnOff();
     self.lights.red.turnOff();
     self.lights.green.turnOn();
   }, 2000);
@@ -60,12 +57,9 @@ CarsTrafficLight.prototype.stop = function () {
 
   self.lights.green.turnOff();
   self.lights.yellow.turnOn();
-
+  
   setTimeout(function () {
     self.lights.yellow.turnOff();
-  }, 2000);
-
-  setTimeout(function () {
     self.lights.red.turnOn();
   }, 2000);
 };
