@@ -57,7 +57,6 @@ CarsTrafficLight.prototype.stop = function () {
   this.lights.green.turnOff();
   this.lights.yellow.turnOn();
 
-  this.lights.yellow.turnOn();
   this.timer = setTimeout(function () {
     this.lights.yellow.turnOff();
     this.lights.red.turnOn();
