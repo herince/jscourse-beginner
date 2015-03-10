@@ -39,27 +39,27 @@ CarsTrafficLight.prototype.constructor = CarsTrafficLight;
 /* stops traffic by turning on only the red light,
    adds a yellow light */
 CarsTrafficLight.prototype.pass = function () {
-  var self = this;
+  clearTimeout(this.timer);
 
-  self.lights.yellow.turnOn();
-
-  setTimeout(function(){
-    self.lights.yellow.turnOff();
-    self.lights.red.turnOff();
-    self.lights.green.turnOn();
-  }, 2000);
+  this.lights.yellow.turnOn();
+  this.timer = setTimeout(function () {
+    this.lights.yellow.turnOff();
+    this.lights.red.turnOff();
+    this.lights.green.turnOn();
+  }.bind(this), 2000);
 };
 
 /* allows cars to pass by turning only the green light on,
    adds a yellow light */
 CarsTrafficLight.prototype.stop = function () {
-  var self = this;
-
-  self.lights.green.turnOff();
-  self.lights.yellow.turnOn();
+  clearTimeout(this.timer);
   
-  setTimeout(function () {
-    self.lights.yellow.turnOff();
-    self.lights.red.turnOn();
-  }, 2000);
+  this.lights.green.turnOff();
+  this.lights.yellow.turnOn();
+
+  this.lights.yellow.turnOn();
+  this.timer = setTimeout(function () {
+    this.lights.yellow.turnOff();
+    this.lights.red.turnOn();
+  }.bind(this), 2000);
 };
