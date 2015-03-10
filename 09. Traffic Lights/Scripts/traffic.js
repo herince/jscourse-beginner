@@ -32,8 +32,6 @@ TrafficLight.prototype = {
 
 var CarsTrafficLight = function () {
   this.lights.yellow = new Light('yellow');
-
-  this.lightsIntervals = {};
 }
 
 CarsTrafficLight.prototype = new TrafficLight();
@@ -47,11 +45,11 @@ CarsTrafficLight.prototype.pass = function () {
 
   self.lights.yellow.turnOn();
    
-  this.lightsIntervals.yellow = setTimeout(function () {
+  setTimeout(function () {
     self.lights.yellow.turnOff();
   }, 2000);
 
-  this.lightsIntervals.green = setTimeout(function(){
+  setTimeout(function(){
     self.lights.red.turnOff();
     self.lights.green.turnOn();
   }, 2000);
