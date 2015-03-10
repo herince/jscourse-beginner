@@ -5,13 +5,7 @@
  * @requires  Class
  */
 
-var TrafficLight = function (type) {
-  if (type === undefined || (type !== 'cars' && type !== 'humans')) {
-    throw 'Invalid traffic lights type!';
-    return;
-  }
-
-  this.type = type;
+var TrafficLight = function () {
   this.lights = {};
 
   this.lights = {
