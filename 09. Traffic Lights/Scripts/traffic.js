@@ -29,7 +29,11 @@ TrafficLight.prototype = {
 }
 
 var CarsTrafficLight = function () {
-  this.lights.yellow = new Light('yellow');
+  this.lights = {
+    red: new Light('red'),
+    green: new Light('green'),
+    yellow: new Light('yellow')
+  };
 }
 
 CarsTrafficLight.prototype = new TrafficLight();
