@@ -38,7 +38,7 @@ function printList( list, size ) {
     }
     html += '</li>';
   }
-  html += '</' + tag + '>';
+  html += ['</', tag, '>'].join('');
 
   return html;
 }
