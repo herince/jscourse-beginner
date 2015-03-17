@@ -38,11 +38,11 @@ function printList( list, size ) {
     }
     html += '</li>';
   }
-  html += '</' + tag + '>';
+  html += ['</', tag, '>'].join('');
 
   return html;
 }
 
 var size = 16;
 
-document.write(printList(list, size));
+document.getElementById('result').innerHTML = printList(list, size);
