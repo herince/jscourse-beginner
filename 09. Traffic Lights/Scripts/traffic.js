@@ -6,33 +6,33 @@
  */
 
 var TrafficLight = function () {
-  this.lights = {
-    red: new Light('red'),
-    green: new Light('green')
+  return {
+    lights: {
+      red: new Light('red'),
+      green: new Light('green')
+    },
+
+    constructor: TrafficLight,
+
+    /* stops traffic by turning on only the red light */
+    stop: function () {
+      this.lights.green.turnOff();
+      this.lights.red.turnOn();
+    },
+
+    /* allows traffic by turning only the green light on */
+    pass: function () {
+      this.lights.red.turnOff();
+      this.lights.green.turnOn();
+    }
   };
 }
 
-TrafficLight.prototype = {
-  constructor: TrafficLight,
-
-  /* stops traffic by turning on only the red light */
-  stop: function () {
-    this.lights.green.turnOff();
-    this.lights.red.turnOn();
-  },
-
-  /* allows traffic by turning only the green light on */
-  pass: function () {
-    this.lights.red.turnOff();
-    this.lights.green.turnOn();
-  }
-}
-
 var CarsTrafficLight = function () {
-  this.lights = {
-    red: new Light('red'),
-    green: new Light('green'),
-    yellow: new Light('yellow')
+  return {
+    lights: {
+      yellow: new Light('yellow')
+    }
   };
 }
 
