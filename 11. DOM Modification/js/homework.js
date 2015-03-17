@@ -46,3 +46,4 @@ function printList( list, size ) {
 var size = 16;
 
 document.getElementById('result').innerHTML = printList(list, size);
+
