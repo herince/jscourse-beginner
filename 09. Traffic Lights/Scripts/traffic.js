@@ -29,10 +29,10 @@ var TrafficLight = function () {
 }
 
 var CarsTrafficLight = function () {
-  return {
-    lights: {
-      yellow: new Light('yellow')
-    }
+  this.lights = {
+    red: new Light('red'),
+    green: new Light('green'),
+    yellow: new Light('yellow')
   };
 }
 
