@@ -26,12 +26,12 @@ var list = [
 
 function printList( list, size ) {
   var tag = list.constructor === Array ? 'ol' : 'ul';
-  var html.push(['<', tag, ' style="font-size:', size, 'px">'].join(''));
+  var html.push(['<', tag, ' style="font-size:', size - 2, 'px">'].join(''));
   for ( var name in list ) {
     if ( ! list.hasOwnProperty( name ) ) {
       continue;
     }
-    html.push(['<li style="font-size:', size - 2, 'px">', list[name].label].join(''));
+    html.push(['<li style="font-size:', size, 'px">', list[name].label].join(''));
     if ( list[name].list ) {
       if ( size > 8 ) {
         html.push(printList( list[name].list, size - 2 ));
