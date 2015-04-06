@@ -3,7 +3,7 @@ var list = [
 {
   label : 'Item 2',
   list : {
-  	'1' : { label : 'Sub Item 2.1' },
+    '1' : { label : 'Sub Item 2.1' },
     '2' : { label : 'Sub Item 2.2' },
     '3' : { label : 'Sub Item 2.3' }
   }
@@ -26,24 +26,24 @@ var list = [
 
 function printList( list, size ) {
   var tag = list.constructor === Array ? 'ol' : 'ul';
-  var html = ['<', tag, ' style="font-size:', size, 'px">'].join('');
-
+  var html.push(['<', tag, ' style="font-size:', size, 'px">'].join(''));
   for ( var name in list ) {
     if ( ! list.hasOwnProperty( name ) ) {
       continue;
     }
-    html += ['<li style="font-size:', size - 2, 'px">', list[name].label].join('');
+    html.push(['<li style="font-size:', size - 2, 'px">', list[name].label].join(''));
     if ( list[name].list ) {
-      html += printList( list[name].list, size - 2 );
+      if ( size > 8 ) {
+        html.push(printList( list[name].list, size - 2 ));
+      } else {
+        html.push(printList( list[name].list, size ));
+      }
     }
-    html += '</li>';
+    html.push('</li>');
   }
-  html += ['</', tag, '>'].join('');
-
-  return html;
+  html.push(['</', tag, '>'].join(''));
+  return html.join('');
 }
 
 var size = 16;
-
 document.getElementById('result').innerHTML = printList(list, size);
-
